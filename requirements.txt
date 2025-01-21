@@ -3,3 +3,6 @@ fastapi
 uvicorn
 scikit-learn
 pandas
+numpy
+prometheus-fastapi-instrumentator
+prometheus-client
