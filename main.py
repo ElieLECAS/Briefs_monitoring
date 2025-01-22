@@ -6,6 +6,7 @@ from evidently.test_suite import TestSuite
 from evidently.test_preset import DataStabilityTestPreset
 import pandas as pd
 import numpy as np
+from api import app
 import joblib
 
 # Charger le dataset Iris
@@ -48,7 +49,7 @@ test_suite = TestSuite(tests=[DataStabilityTestPreset()])
 test_suite.run(reference_data=reference_data, current_data=production_data)
 
 # Sauvegarder le rapport Evidently en HTML
-test_suite.save_html("data_stability_report.html")
+test_suite.save_html("reports/data_stability_report.html")
 
 print("Rapport de stabilité des données généré : data_stability_report.html")
 # Sauvegarder reference_data

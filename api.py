@@ -22,10 +22,10 @@ try:
 except FileNotFoundError as e:
     raise RuntimeError(f"Fichier manquant : {str(e)}")
 
-
 # Créer une application FastAPI
 app = FastAPI()
 
+# Instrumenter l'application FastAPI avec Prometheus
 Instrumentator().instrument(app).expose(app)
 
 # Définir un modèle de données pour l'entrée
