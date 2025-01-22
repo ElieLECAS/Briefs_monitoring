@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from evidently.test_suite import TestSuite
 from evidently.test_preset import DataStabilityTestPreset
+from prometheus_fastapi_instrumentator import Instrumentator
 import joblib
 import pandas as pd
 import numpy as np
@@ -24,6 +25,8 @@ except FileNotFoundError as e:
 
 # Créer une application FastAPI
 app = FastAPI()
+
+Instrumentator().instrument(app).expose(app)
 
 # Définir un modèle de données pour l'entrée
 class Features(BaseModel):
