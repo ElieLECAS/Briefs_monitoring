@@ -6,3 +6,4 @@ pandas
 numpy
 prometheus-fastapi-instrumentator
 prometheus-client
+python-multipart
