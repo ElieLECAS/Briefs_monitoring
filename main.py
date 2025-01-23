@@ -1,7 +1,7 @@
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from evidently.test_suite import TestSuite
 from evidently.test_preset import DataStabilityTestPreset
 import pandas as pd
@@ -33,6 +33,21 @@ y_pred = model.predict(X_test)
 # Calculer la précision
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Précision du modèle : {accuracy}")
+
+# Calculer toutes les métriques
+metrics = {
+    'accuracy': accuracy_score(y_test, y_pred),
+    'f1_score': f1_score(y_test, y_pred, average='weighted'),
+    'precision': precision_score(y_test, y_pred, average='weighted'),
+    'recall': recall_score(y_test, y_pred, average='weighted')
+}
+
+print(f"Métriques du modèle :")
+for metric_name, value in metrics.items():
+    print(f"{metric_name}: {value}")
+
+# Sauvegarder les métriques initiales
+pd.DataFrame([metrics]).to_csv("model_metrics.csv", index=False)
 
 # Dataset de référence (entraînement original)
 reference_data = pd.concat([X_train, y_train.reset_index(drop=True)], axis=1)
